@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="mix.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        b {
+            color: red;
+
+        }
+    </style>
+
+    <form action="" id="form-contain">
+
+        <h3 style="text-align: center;">biểu mẫu đăng kí</h3>
+        <!-- name -->
+        <div class="form-grp">
+            <label for="firstname">firstname <b>*</b></label>
+            <br>
+            <input type="text" id="firstname" min="2" max="30">
+            <br>
+
+            <label for="lastname">lastname <b>*</b></label>
+            <br>
+            <input type="text" id="lastname" min="2" max="30">
+        </div>
+        <!-- email -->
+        <div class="form-grp">
+            <label for="email">email <b>*</b></label>
+            <br>
+            <input type="email" name="" id="email" onchange="checkEmail()">
+        </div>
+        <!-- mật khẩu -->
+        <div class="form-grp">
+            <label for="password">password <b>*</b></label>
+            <br>
+            <input type="password" id="password">
+            <br>
+            <label for="password-again">password-again <b>*</b></label>
+            <br>
+            <input type="password" id="password-again">
+        </div>
+        <!-- năm sinh -->
+        <div class="form-grp">
+            <label for="fox">year of birth <b>*</b></label>
+            <select id="fox">
+                <option value=""> 'chọn' </option>
+                <option value="">1990</option>
+                <option value="">1991</option>
+                <option value="">1992</option>
+                <option value="">1993</option>
+                <option value="">1994</option>
+                <option value="">1995</option>
+                <option value="">1996</option>
+                <option value="">1997</option>
+                <option value="">1998</option>
+                <option value="">1999</option>
+                <option value="">2000</option>
+            </select>
+        </div>
+        <!-- input radio -->
+        <div class="form-grp">
+            <label for="male">male <b>*</b></label>
+            <input type="radio" name="check" id="male">
+            <label for="female">female <b>*</b></label>
+            <input type="radio" name="check" id="female">
+        </div>
+        <!-- thành phố -->
+        <div class="form-grp">
+            <label for="select">country <b>*</b></label>
+            <select id="select">
+                <option value=""> 'chọn' </option>
+                <option value="">Ha Noi</option>
+                <option value="">Ho Chi Minh</option>
+                <option value="">Da Nang</option>
+                <option value="">Hue</option>
+            </select>
+        </div>
+        <!-- nút submit -->
+        <div class="form-grp">
+            <button type="button" onclick="send()">submit</button>
+        </div>
+
+
+    </form>
+
+
+    <script>
+        function send() {
+            var over = document.getElementsByTagName('input');
+            var firstName = over[0].value;
+            var lastName = over[1].value;
+            var email = over[2].value;
+            var pas = over[3].value;
+            var pass = over[4].value;
+            var fox = document.getElementById('fox').getElementsByTagName('option');
+            var male = over[5].checked;
+            var female = over[6].checked;
+            var select = document.getElementById('select').getElementsByTagName('option');
+
+
+            if (firstName == "") {
+                alert('chưa nhập tên');
+                return false;
+            }
+            if (firstName.length < 2 || firstName.length > 30) {
+                alert('tên chưa đúng');
+                return false;
+            }
+            if (lastName == "") {
+                alert('chưa nhập họ');
+                return false;
+            }
+            if (lastName.length < 2 || lastName.length > 30) {
+                alert('họ chưa đúng');
+                return false;
+            }
+            if (email = '') {
+                alert('chưa nhập email');
+                return false;
+            }
+
+            if (pas == "") {
+                alert('chưa nhập mật khẩu');
+                return false;
+            }
+            if (pass !== pas) {
+                alert('mật khẩu nhập lại không chính xác');
+                return false;
+            }
+            if (fox[0].selected) {
+                alert('chưa chọn năm sinh');
+                return false;
+            }
+               
+            if (male || female) {
+
+            } else {
+                alert('chưa chọn giới tính');
+                return false;
+            }
+            if (select[0].selected) {
+                   alert('chưa chọn thành phố');
+                   return false;
+            } 
+            alert('đăng kí thành công');
+        }
+        //Hàm check email có hợp lệ hay không 
+        function checkEmail() {
+            //Khai báo biến để lấy giá trị input email
+            var email = document.getElementById('email').value; 
+
+              //Viết validate cho email
+            var reg = /^\w+@[a-zA-Z]{3,}\.com$/i;
+
+            //Kiểm tra true false bằng console
+
+            console.log(reg.test(email));
+            // Điều khiện kiểm tra eamil
+            if (reg.test(email)) {
+
+            } else {
+                email = alert('Email không hợp lệ !');
+            }
+        };
+    </script>
+</body>
+
+</html>
